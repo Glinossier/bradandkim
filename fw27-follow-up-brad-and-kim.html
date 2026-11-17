@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>FW27 follow-up | Brad and Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F4F1; --surface:#FFFFFF; --ink:#1C2421; --muted:#5E6A64; --line:#DCE0DB;
+  --pine:#1F3A33; --pine-ink:#FFFFFF; --moss:#5C7A55; --saola-bg:#E7EEE5; --rep-bg:#F1F2EE;
+  --s-none:#C9CFCA; --s-contacted:#E2B65A; --s-booked:#7FA36F; --s-done:#2F6B4F; --s-declined:#B9675A;
+  --alert-bg:#F7DEDA; --alert-ink:#8A2E22; --focus:#2F6B4F;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141917; --surface:#1C2320; --ink:#E7ECE8; --muted:#9AA6A0; --line:#2E3833;
+    --pine:#A9C9A0; --pine-ink:#14201B; --moss:#8FB383; --saola-bg:#22302A; --rep-bg:#252B28;
+    --s-none:#46504B; --s-contacted:#C99B3E; --s-booked:#6E9461; --s-done:#8CC79F; --s-declined:#C27B6F;
+    --alert-bg:#3E2420; --alert-ink:#F2B3A8; --focus:#8CC79F; color-scheme:dark;
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Instrument Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+h1{font-size:30px;line-height:1.1;font-weight:700;letter-spacing:-.02em;margin:0}
+.sub{color:var(--muted);margin:6px 0 0}
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 14px;border-radius:8px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--pine);color:var(--pine-ink);border-color:var(--pine)}
+.btn:disabled{opacity:.6;cursor:default}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.who{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted)}
+.who select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;color:var(--ink)}
+.notice{background:var(--alert-bg);color:var(--alert-ink);padding:10px 14px;border-radius:8px;margin-bottom:18px;font-size:14px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.notice[hidden]{display:none}
+
+.coverage{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:24px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 3fr;gap:18px;align-items:end}
+.tile span{display:block;font-size:12.5px;color:var(--muted)}
+.tile b{display:block;font-size:28px;line-height:1.1;font-weight:700;color:var(--pine);font-variant-numeric:tabular-nums}
+.statuses{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.st{text-align:center;font-size:12px}
+.st span{display:block;padding:3px 4px;border-radius:4px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st b{display:block;font-size:20px;font-weight:700;padding-top:2px;font-variant-numeric:tabular-nums}
+.bar{display:flex;height:14px;border-radius:4px;overflow:hidden;background:var(--s-none);margin-top:16px}
+.bar i{display:block;height:100%}
+.hint{color:var(--muted);font-size:13px;margin:10px 0 0}
+
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.filters input,.filters select{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.filters input{flex:1 1 220px;min-width:180px}
+.count{color:var(--muted);font-size:14px;margin-left:auto}
+
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:980px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}
+th{font-size:12.5px;font-weight:600;color:var(--pine-ink);background:var(--pine)}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:color-mix(in srgb,var(--line) 40%,var(--surface))}
+tbody tr:last-child td{border-bottom:0}
+.acct{font-weight:600}
+.acct small{display:block;font-weight:400;color:var(--muted)}
+.pill{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:600;font-size:13px;white-space:nowrap}
+.prospect{color:var(--moss);font-weight:600}
+.late{color:var(--alert-ink);font-weight:600}
+.muted{color:var(--muted)}
+th.num,td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.quote{color:var(--muted);font-style:italic}
+.quote small{display:block;font-size:11.5px}
+.hist{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:6px}
+.hist div{background:var(--bg);border-radius:7px;padding:7px 8px;text-align:center}
+.hist span{display:block;font-size:12px;color:var(--muted)}
+.hist b{display:block;font-size:14px;font-variant-numeric:tabular-nums}
+.hist .quote b{font-weight:500}
+.histnote{font-size:12px;color:var(--muted);margin:0}
+.empty{padding:40px 20px;text-align:center;color:var(--muted)}
+
+.scrim{position:fixed;inset:0;background:rgba(10,15,12,.4);opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(540px,100%);background:var(--surface);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;z-index:20;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.drawer header{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.drawer h3{margin:0;font-size:19px}
+.drawer .body{overflow-y:auto;padding:18px 22px;flex:1}
+fieldset{border:0;padding:0;margin:0 0 22px}
+legend{font-weight:600;font-size:14px;margin-bottom:10px;color:var(--moss)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid .full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+label input,label select,label textarea{background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px 10px;color:var(--ink);font-size:14.5px}
+.rowbtn{display:flex;gap:10px;align-items:center;margin-top:12px}
+.saveerr{color:var(--alert-ink);font-size:13px}
+.saved{color:var(--moss);font-size:13px}
+
+.thread{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.msg{max-width:88%;padding:9px 12px;border-radius:10px;background:var(--rep-bg);border:1px solid var(--line)}
+.msg.saola{align-self:flex-end;background:var(--saola-bg);border-color:transparent}
+.msg.note{align-self:stretch;max-width:none;background:transparent;border-style:dashed}
+.msg .meta{font-size:12px;color:var(--muted);margin-bottom:2px}
+.msg .meta b{color:var(--ink);font-weight:600}
+.msg .txt{white-space:pre-wrap;font-size:14.5px}
+.compose textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:8px 10px;font-size:14.5px}
+.x{background:none;border:0;font-size:22px;line-height:1;cursor:pointer;color:var(--muted);padding:4px 8px}
+
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,15,12,.45);z-index:30;padding:20px}
+.modal.open{display:flex}
+.modal .card{background:var(--surface);border-radius:12px;padding:22px;max-width:380px;width:100%}
+.modal h4{margin:0 0 6px;font-size:18px}
+.modal p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.choices{display:flex;flex-wrap:wrap;gap:8px}
+
+@media (max-width:820px){ .tiles{grid-template-columns:repeat(3,1fr)} .statuses{grid-column:1/-1} }
+@media (max-width:760px){
+  .wrap{padding:20px 14px 48px}
+  h1{font-size:24px}
+  table{min-width:0}
+  thead{display:none}
+  tbody tr{display:block;padding:12px 14px;border-bottom:1px solid var(--line)}
+  tbody td{display:block;border:0;padding:2px 0}
+  tbody td[data-l]::before{content:attr(data-l) ": ";color:var(--muted);font-size:12.5px}
+  .grid{grid-template-columns:1fr}
+  .tile b{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- Email notifications (Netlify Forms). The form name must match NOTIFY_FORM below. Do not remove. -->
+<form name="fw27-brad-and-kim" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="page"><input name="account"><input name="by">
+  <input name="summary"><textarea name="comment"></textarea><input name="link">
+</form>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1 id="pageTitle">FW27 follow-up</h1>
+      <p class="sub" id="pageSub"></p>
+    </div>
+    <div class="actions">
+      <span class="who">You are <select id="whoSel" aria-label="Who is using this page"></select></span>
+      <button class="btn" id="exportBtn" type="button">Export CSV</button>
+      <button class="btn primary" id="addBtn" type="button">Add account</button>
+    </div>
+  </header>
+
+  <div class="notice" id="notice" hidden><span id="noticeText"></span><button class="btn" id="retryBtn" type="button" hidden>Reload</button></div>
+
+  <section class="coverage" aria-label="Coverage">
+    <div class="tiles">
+      <div class="tile"><span>Accounts</span><b id="tAll">0</b></div>
+      <div class="tile"><span>Existing</span><b id="tEx">0</b></div>
+      <div class="tile"><span>Prospects</span><b id="tPr">0</b></div>
+      <div class="statuses" id="statuses"></div>
+    </div>
+    <div class="bar" id="bar" role="img"></div>
+    <p class="hint">Click an account to update it or add a comment. Everything saves for everyone instantly. Season amounts in italics are not confirmed yet.</p>
+  </section>
+
+  <div class="filters">
+    <input type="search" id="q" placeholder="Search account or contact" aria-label="Search">
+    <select id="fType" aria-label="Filter by account type"><option value="">All accounts</option><option>Existing</option><option>Prospect</option></select>
+    <select id="fStatus" aria-label="Filter by appointment status"></select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>Account</th><th>State</th><th>Rep</th><th>Account type</th><th>Appointment</th><th>Appointment date</th><th class="num">SS25</th><th class="num">FW25</th><th class="num">SS26</th><th class="num">FW26</th><th class="num">SS27</th><th>Last updated</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dTitle">
+  <header><h3 id="dTitle">Account</h3><button class="x" id="closeBtn" type="button" aria-label="Close">×</button></header>
+  <div class="body">
+    <form id="form" autocomplete="off">
+      <fieldset>
+        <legend>Account</legend>
+        <div class="grid">
+          <label class="full">Account name<input name="account" required></label>
+          <label>Contact<input name="contact"></label>
+          <label>State<input name="state" maxlength="20"></label>
+          <label>Rep<input name="rep" list="repList"></label>
+          <label>Account type<select name="type"><option>Existing</option><option>Prospect</option></select></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Appointment</legend>
+        <div class="grid">
+          <label>Status<select name="apptStatus"></select></label>
+          <label>Appointment date<input type="date" name="apptDate"></label>
+        </div>
+        <div class="rowbtn">
+          <button class="btn primary" id="saveBtn" type="button">Save</button>
+          <button class="btn" id="cancelBtn" type="button">Close</button>
+          <span id="saveMsg" role="status"></span>
+        </div>
+      </fieldset>
+    </form>
+    <fieldset>
+      <legend>Order history</legend>
+      <div class="hist" id="hist"></div>
+      <p class="histnote">Net value in USD from the order file. Amounts in italics are not confirmed yet. Cancelled orders are excluded.</p>
+    </fieldset>
+    <fieldset>
+      <legend>Comments</legend>
+      <div class="thread" id="thread"></div>
+      <div class="compose">
+        <textarea id="newComment" aria-label="Write a comment" placeholder="Write a comment or reply"></textarea>
+        <div class="rowbtn">
+          <button class="btn primary" id="postBtn" type="button">Post comment</button>
+          <span id="postMsg" role="status"></span>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</aside>
+<datalist id="repList"></datalist>
+
+<div class="modal" id="whoModal" role="dialog" aria-modal="true" aria-labelledby="whoTitle">
+  <div class="card">
+    <h4 id="whoTitle">Who's using this page?</h4>
+    <p>Your name goes on your comments and updates. You can change it at the top of the page.</p>
+    <div class="choices" id="whoChoices"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   PAGE SETUP. To make a page for another rep, copy this file,
+   rename it (fw27-follow-up-<rep-name>.html) and change this block.
+   Also change the form name on the hidden form near the top of
+   the page so it matches NOTIFY_FORM.
+   ============================================================ */
+const PAGE = {
+  title: "FW27 follow-up",
+  repLabel: "Brad and Kim",
+  territory: "Midwest",
+  slug: "fw27-brad-and-kim",           // storage key, unique per page, never change once in use
+  notifyForm: "fw27-brad-and-kim",     // must match the hidden form name above
+  reps: ["Brad", "Kim"],               // people on the rep side
+  saola: ["Guillaume"]                 // people on the Saola side
+};
+/* Starting accounts from the CRM (stage Sales, tags Midwest + Brad and Kim).
+   "note" is the CRM next-activity note, shown at the top of the comments. */
+const ACCOUNTS = [
+  { id:"alpine-shop-mo",        account:"Alpine Shop MO",        contact:"",                   state:"MO", rep:"Brad and Kim", type:"Prospect", note:"Send info to the reps" },
+  { id:"rrt",                   account:"RRT",                   contact:"Bryan Wolf",         state:"",   rep:"Brad and Kim", type:"Prospect", note:"Met at GOA. Follow up with reps" },
+  { id:"plamondon-shoes",       account:"Plamondon Shoes",       contact:"Miranda",            state:"",   rep:"Brad and Kim", type:"Prospect", note:"See what the reps think" },
+  { id:"gearhead-outfitters",   account:"Gearhead Outfitters",   contact:"Rob Singer",         state:"",   rep:"Brad and Kim", type:"Prospect", note:"Follow up with the reps" },
+  { id:"appalachian-outfitters",account:"Appalachian Outfitters",contact:"Kevin Leffler",      state:"",   rep:"Brad and Kim", type:"Prospect", note:"Met at GOA, reps to follow up",
+    quotes:{SS27:4985} },
+  { id:"jl-waters",             account:"JL Waters",             contact:"Clayton Cunningham", state:"IN", rep:"Brad and Kim", type:"Existing", note:"Saw at GOA, reps to follow up",
+    orders:{FW26:910}, quotes:{SS27:3040} },
+  { id:"earths-edge",           account:"Earth's Edge",          contact:"Sandy Tuggle",       state:"",   rep:"Brad and Kim", type:"Prospect", note:"Met at GOA. Brad and Kim on it. Follow up" },
+  { id:"indiana-rug-company",   account:"Indiana Rug Company",   contact:"Clark",              state:"IN", rep:"Brad and Kim", type:"Existing", note:"Follow up with Steve",
+    orders:{SS25:1100, FW25:2630, SS26:655, FW26:3005}, quotes:{SS27:3270} },
+  { id:"laura-lee-outfitters",  account:"Laura Lee Outfitters",  contact:"Caity Woolcocks",    state:"",   rep:"Brad and Kim", type:"Existing", note:"Check with reps",
+    orders:{SS25:2865, SS26:2380} },
+  { id:"golden-shoes",          account:"Golden Shoes",          contact:"",                   state:"",   rep:"Brad and Kim", type:"Existing", note:"Ask reps if they have reached out to them",
+    orders:{SS26:12090}, quotes:{SS27:11650} }
+];
+/* Order history: net value in USD per season from the order file (sales orders only).
+   quotes = quotations not yet confirmed. Update these numbers when you refresh the order file. */
+const SEASONS = ["SS25","FW25","SS26","FW26","SS27"];
+/* ============================================================ */
+
+const API = "/api/accounts?agency=" + encodeURIComponent(PAGE.slug);
+const STATUSES = [
+  {k:"Not contacted", c:"--s-none",      t:"var(--ink)"},
+  {k:"Contacted",     c:"--s-contacted", t:"#1C2421"},
+  {k:"Booked",        c:"--s-booked",    t:"#1C2421"},
+  {k:"Done",          c:"--s-done",      t:"var(--surface)"},
+  {k:"Declined",      c:"--s-declined",  t:"#FFFFFF"}
+];
+const FIELDS = ["account","contact","state","rep","type","apptStatus","apptDate"];
+const LABELS = {account:"Account name",contact:"Contact",state:"State",rep:"Rep",type:"Account type",apptStatus:"Appointment",apptDate:"Appointment date"};
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const today = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+const fmtDate = s => { if(!s) return ""; const [y,m,d]=String(s).slice(0,10).split("-").map(Number); if(!y) return esc(s); return new Date(y,m-1,d).toLocaleDateString("en-US",{month:"short",day:"numeric"}); };
+const fmtWhen = iso => { if(!iso) return ""; const d=new Date(iso); return d.toLocaleDateString("en-US",{month:"short",day:"numeric"})+", "+d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"}); };
+const st = k => STATUSES.find(s=>s.k===k) || STATUSES[0];
+const money = v => "$" + Math.round(v).toLocaleString("en-US");
+function seasonCell(r, s){
+  const o=(r.orders||{})[s], q=(r.quotes||{})[s];
+  if(o) return esc(money(o)) + (q?`<small class="quote" style="display:block">+ ${esc(money(q))}</small>`:"");
+  if(q) return `<span class="quote">${esc(money(q))}</span>`;
+  return '<span class="muted">-</span>';
+}
+const isSaola = name => PAGE.saola.includes(name) || name==="Saola";
+
+document.title = `${PAGE.title} | ${PAGE.repLabel}`;
+$("#pageTitle").textContent = `${PAGE.title}: ${PAGE.repLabel}`;
+$("#pageSub").textContent = `${PAGE.territory} territory. Reps and Saola update this page together.`;
+$("#repList").innerHTML = [PAGE.repLabel].concat(PAGE.reps).map(r=>`<option value="${esc(r)}">`).join("");
+
+/* ---------- who am I ---------- */
+const WHO_KEY = "saola-who-" + PAGE.slug;
+const PEOPLE = PAGE.reps.concat(PAGE.saola.map(n=>n+" (Saola)"));
+const nameOf = label => label.replace(/ \(Saola\)$/,"");
+let who = ""; try{ who = localStorage.getItem(WHO_KEY) || ""; }catch(e){}
+function setWho(v){ who=v; try{ localStorage.setItem(WHO_KEY,v); }catch(e){} $("#whoSel").value=v; }
+$("#whoSel").innerHTML = `<option value="">Choose</option>` + PEOPLE.map(p=>`<option value="${esc(nameOf(p))}">${esc(p)}</option>`).join("");
+$("#whoSel").value = who;
+$("#whoSel").onchange = e => setWho(e.target.value);
+$("#whoChoices").innerHTML = PEOPLE.map(p=>`<button class="btn" type="button" data-who="${esc(nameOf(p))}">${esc(p)}</button>`).join("");
+$("#whoChoices").querySelectorAll("button").forEach(b=>b.onclick=()=>{ setWho(b.dataset.who); $("#whoModal").classList.remove("open"); if(pendingAfterWho){ const f=pendingAfterWho; pendingAfterWho=null; f(); } });
+let pendingAfterWho=null;
+function needWho(then){ if(who) return true; pendingAfterWho=then; $("#whoModal").classList.add("open"); return false; }
+
+/* ---------- data ---------- */
+let server = {}, loaded = false;
+function allRows(){
+  const base = ACCOUNTS.map(a => ({apptStatus:"Not contacted", comments:[], ...a, ...(server[a.id]||{}), id:a.id, note:a.note, orders:a.orders||{}, quotes:a.quotes||{}, isNew:false}));
+  const extra = Object.values(server).filter(r=>r && r.id && !ACCOUNTS.some(a=>a.id===r.id))
+    .map(r => ({apptStatus:"Not contacted", comments:[], ...r, orders:{}, quotes:{}, isNew:true}));
+  return base.concat(extra);
+}
+async function load(){
+  try{
+    const res = await fetch(API, {cache:"no-store"});
+    if(!res.ok) throw new Error(res.status);
+    const list = await res.json();
+    server = {}; (Array.isArray(list)?list:[]).forEach(r=>{ if(r && r.id) server[r.id]=r; });
+    loaded = true; notice("");
+  }catch(e){
+    notice(loaded ? "Couldn't refresh the latest changes. Check your connection." : "Couldn't load the tracker. Check your connection and reload.", true);
+  }
+  render();
+  if(openId) renderThread();
+}
+const drawerOpen = () => $("#drawer").classList.contains("open");
+setInterval(()=>{ if(document.visibilityState==="visible") load(); }, 45000);
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible") load(); });
+function notice(msg, showReload){ $("#notice").hidden=!msg; $("#noticeText").textContent=msg||""; $("#retryBtn").hidden=!showReload; }
+$("#retryBtn").onclick = load;
+
+async function api(body){
+  const res = await fetch(API, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)});
+  if(!res.ok) throw new Error(res.status);
+  return res.json();
+}
+function notify(account, summary, comment){
+  const body = new URLSearchParams({"form-name":PAGE.notifyForm,"bot-field":"",page:`${PAGE.title}: ${PAGE.repLabel}`,account,by:who||"Unknown",summary,comment:comment||"",link:location.href.split("#")[0]});
+  fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:body.toString()}).catch(()=>{});
+}
+
+/* ---------- render ---------- */
+$("#fStatus").innerHTML = `<option value="">All appointments</option>` + STATUSES.map(s=>`<option>${s.k}</option>`).join("");
+$("#form").elements.apptStatus.innerHTML = STATUSES.map(s=>`<option>${s.k}</option>`).join("");
+
+function renderCoverage(rows){
+  const n=rows.length, cnt=k=>rows.filter(r=>(r.apptStatus||"Not contacted")===k).length;
+  $("#tAll").textContent=n;
+  $("#tEx").textContent=rows.filter(r=>r.type==="Existing").length;
+  $("#tPr").textContent=rows.filter(r=>r.type==="Prospect").length;
+  const met=cnt("Booked")+cnt("Done");
+  $("#statuses").innerHTML=STATUSES.map(s=>`<div class="st"><span style="background:var(${s.c});color:${s.t}" title="${s.k}">${s.k}</span><b>${cnt(s.k)}</b></div>`).join("");
+  $("#bar").innerHTML=n?STATUSES.map(s=>{const c=cnt(s.k);return c?`<i style="width:${c/n*100}%;background:var(${s.c})" title="${s.k}: ${c}"></i>`:"";}).join(""):"";
+  $("#bar").setAttribute("aria-label",`${met} of ${n} accounts have an appointment booked or done`);
+}
+function renderTable(rows){
+  const q=$("#q").value.trim().toLowerCase(), ty=$("#fType").value, s=$("#fStatus").value;
+  const list=rows.filter(r=>(!ty||r.type===ty)&&(!s||(r.apptStatus||"Not contacted")===s)&&
+    (!q||[r.account,r.contact,r.state,r.rep,r.note,(r.comments||[]).map(c=>c.text).join(" ")].join(" ").toLowerCase().includes(q)))
+    .sort((a,b)=>(a.account||"").localeCompare(b.account||""));
+  $("#count").textContent=`${list.length} of ${rows.length} accounts`;
+  const tb=$("#rows");
+  if(!loaded&&!Object.keys(server).length){ tb.innerHTML=`<tr><td colspan="12" class="empty">Loading accounts…</td></tr>`; return; }
+  if(!list.length){ tb.innerHTML=`<tr><td colspan="12" class="empty">${rows.length?"No accounts match these filters.":"No accounts yet. Use Add account to create one."}</td></tr>`; return; }
+  tb.innerHTML=list.map(r=>{
+    const S=st(r.apptStatus), late=r.apptStatus==="Booked"&&r.apptDate&&r.apptDate<today();
+    const upd = r.updatedAt ? fmtDate(r.updatedAt)+(r.updatedBy?`<br><span class="muted">${esc(r.updatedBy)}</span>`:"") : '<span class="muted">-</span>';
+    return `<tr data-id="${esc(r.id)}" tabindex="0">
+      <td class="acct">${esc(r.account)}${r.contact?`<small>${esc(r.contact)}</small>`:""}</td>
+      <td data-l="State">${esc(r.state)||'<span class="muted">-</span>'}</td>
+      <td data-l="Rep">${esc(r.rep)}</td>
+      <td data-l="Type" class="${r.type==="Prospect"?"prospect":""}">${esc(r.type)}</td>
+      <td data-l="Appointment"><span class="pill" style="background:var(${S.c});color:${S.t}">${esc(S.k)}</span></td>
+      <td data-l="Appointment date" class="${late?"late":""}">${r.apptDate?fmtDate(r.apptDate):'<span class="muted">-</span>'}</td>
+      ${SEASONS.map(s=>`<td data-l="${s}" class="num">${seasonCell(r,s)}</td>`).join("")}
+      <td data-l="Last updated">${upd}</td>
+    </tr>`;
+  }).join("");
+  tb.querySelectorAll("tr[data-id]").forEach(tr=>{ tr.onclick=()=>openDrawer(tr.dataset.id); tr.onkeydown=e=>{ if(e.key==="Enter") openDrawer(tr.dataset.id); }; });
+}
+function render(){ const rows=allRows(); renderCoverage(rows); renderTable(rows); }
+["#q","#fType","#fStatus"].forEach(s=>$(s).addEventListener("input",render));
+
+/* ---------- drawer ---------- */
+let openId=null, lastFocus=null;
+function current(){ return openId ? allRows().find(r=>r.id===openId) : null; }
+function openDrawer(id){
+  lastFocus=document.activeElement; openId=id;
+  const f=$("#form"); f.reset(); $("#saveMsg").textContent=""; $("#postMsg").textContent=""; $("#newComment").value="";
+  const r=current() || {type:"Prospect",apptStatus:"Not contacted",rep:PAGE.repLabel};
+  FIELDS.forEach(k=>f.elements[k].value=r[k]||"");
+  if(!r.apptStatus) f.elements.apptStatus.value="Not contacted";
+  $("#dTitle").textContent = r.account || "New account";
+  $("#postBtn").disabled = !id;
+  $("#newComment").placeholder = id ? "Write a comment or reply" : "Save the account first, then add comments";
+  $("#newComment").disabled = !id;
+  renderThread();
+  $("#hist").innerHTML = SEASONS.map(x=>{ const o=(r.orders||{})[x], q=(r.quotes||{})[x];
+    return `<div class="${!o&&q?"quote":""}"><span>${x}</span><b>${o?esc(money(o)):(q?esc(money(q)):"-")}</b>${o&&q?`<span class="quote">+ ${esc(money(q))}</span>`:""}</div>`; }).join("");
+  $("#drawer").classList.add("open"); $("#scrim").classList.add("open"); $("#drawer").setAttribute("aria-hidden","false");
+  setTimeout(()=>(id?f.elements.apptStatus:f.elements.account).focus(),60);
+}
+function closeDrawer(){
+  $("#drawer").classList.remove("open"); $("#scrim").classList.remove("open"); $("#drawer").setAttribute("aria-hidden","true");
+  openId=null; if(lastFocus) lastFocus.focus();
+}
+function renderThread(){
+  const r=current(); const el=$("#thread");
+  if(!r){ el.innerHTML=`<p class="muted">No comments yet.</p>`; return; }
+  const items=[];
+  if(r.note) items.push(`<div class="msg note"><div class="meta"><b>CRM note</b></div><div class="txt">${esc(r.note)}</div></div>`);
+  (r.comments||[]).forEach(c=>items.push(`<div class="msg ${isSaola(c.author)?"saola":""}"><div class="meta"><b>${esc(c.author)}${isSaola(c.author)?" (Saola)":""}</b>, ${esc(fmtWhen(c.at))}</div><div class="txt">${esc(c.text)}</div></div>`));
+  el.innerHTML = items.length ? items.join("") : `<p class="muted">No comments yet. Start the conversation below.</p>`;
+}
+$("#closeBtn").onclick=closeDrawer; $("#cancelBtn").onclick=closeDrawer; $("#scrim").onclick=closeDrawer;
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&drawerOpen()) closeDrawer(); });
+$("#addBtn").onclick=()=>openDrawer(null);
+
+let saving=false;
+async function save(){
+  if(saving) return;
+  if(!needWho(save)) return;
+  const f=$("#form"); const name=f.elements.account.value.trim();
+  if(!name){ f.elements.account.reportValidity(); return; }
+  const before=current();
+  const id = openId || (name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"account")+"-"+Date.now().toString(36);
+  const record={action:"save",id,by:who};
+  FIELDS.forEach(k=>record[k]=(f.elements[k].value||"").trim());
+  const changed = before ? FIELDS.filter(k=>(before[k]||"")!==record[k]) : FIELDS.filter(k=>record[k]);
+  if(before && !changed.length){ $("#saveMsg").className="saved"; $("#saveMsg").textContent="No changes to save."; return; }
+  saving=true; $("#saveBtn").disabled=true; $("#saveBtn").textContent="Saving…"; $("#saveMsg").textContent="";
+  try{
+    const saved=await api(record); server[saved.id]=saved;
+    const summary = before ? changed.map(k=>`${LABELS[k]}: ${k==="apptDate"?(record[k]?fmtDate(record[k]):"cleared"):(record[k]||"cleared")}`).join("; ") : "New account added";
+    notify(record.account, summary, "");
+    const wasNew=!openId; openId=saved.id; render();
+    $("#dTitle").textContent=saved.account; $("#saveMsg").className="saved"; $("#saveMsg").textContent="Saved.";
+    if(wasNew){ $("#postBtn").disabled=false; $("#newComment").disabled=false; $("#newComment").placeholder="Write a comment or reply"; renderThread(); }
+  }catch(e){ $("#saveMsg").className="saveerr"; $("#saveMsg").textContent="Didn't save. Check your connection and try again."; }
+  finally{ saving=false; $("#saveBtn").disabled=false; $("#saveBtn").textContent="Save"; }
+}
+$("#saveBtn").onclick=save;
+
+let posting=false;
+async function post(){
+  if(posting||!openId) return;
+  const text=$("#newComment").value.trim(); if(!text){ $("#newComment").focus(); return; }
+  if(!needWho(post)) return;
+  const r=current();
+  posting=true; $("#postBtn").disabled=true; $("#postBtn").textContent="Posting…"; $("#postMsg").textContent="";
+  try{
+    const saved=await api({action:"comment",id:openId,by:who,text,account:r.account,rep:r.rep,type:r.type});
+    server[saved.id]=saved; $("#newComment").value=""; renderThread(); render();
+    notify(r.account, `New comment from ${who}`, text);
+    const th=$("#thread"); th.lastElementChild && th.lastElementChild.scrollIntoView({block:"nearest"});
+  }catch(e){ $("#postMsg").className="saveerr"; $("#postMsg").textContent="Didn't post. Check your connection and try again."; }
+  finally{ posting=false; $("#postBtn").disabled=false; $("#postBtn").textContent="Post comment"; }
+}
+$("#postBtn").onclick=post;
+$("#newComment").addEventListener("keydown",e=>{ if(e.key==="Enter"&&(e.metaKey||e.ctrlKey)) post(); });
+
+/* ---------- CSV export ---------- */
+$("#exportBtn").onclick=()=>{
+  const head=["Page","Account","Contact","State","Rep","Account Type","Appointment Status","Appointment Date"].concat(SEASONS.map(x=>x+" orders $"),SEASONS.map(x=>x+" unconfirmed $"),["CRM Note","Comments","Last Updated","Updated By"]);
+  const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const rows=allRows().map(r=>[`${PAGE.title}: ${PAGE.repLabel}`,r.account,r.contact,r.state,r.rep,r.type,r.apptStatus,r.apptDate,...SEASONS.map(x=>(r.orders||{})[x]||""),...SEASONS.map(x=>(r.quotes||{})[x]||""),r.note,
+    (r.comments||[]).map(c=>`[${fmtWhen(c.at)}] ${c.author}: ${c.text}`).join("\n"),r.updatedAt,r.updatedBy]);
+  const csv=[head].concat(rows).map(r=>r.map(q).join(",")).join("\r\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));
+  a.download=`${PAGE.slug}-${today()}.csv`; document.body.appendChild(a); a.click(); a.remove();
+};
+
+render(); load();
+if(!who) $("#whoModal").classList.add("open");
+</script>
+</body>
+</html>
